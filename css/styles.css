@@ -1,0 +1,131 @@
+
+
+
+:root{        /*全域變數宣告*/
+  --clr-neutral-900:hsl(207,19%,9%);
+  --clr-neutral-100:hsl(0,0%,100%);
+  --clr-accent-400:hsl(142,90%,61%);
+}
+
+*
+*::before,
+*::after{
+  box-sizing: border-box;
+}
+
+
+
+body{
+  display: grid; 
+  min-height: 100vh;
+  place-items: center;
+  line-height: 1.6;
+  background: var(--clr-neutral-900); 
+  font-family: sans-serif;
+}
+
+
+.card{ 
+  color: var(--clr-neutral-100);
+  background-image: url("game_girl.jpg");
+  background-repeat: no-repeat;
+  background-position:center;
+  background-size: cover;
+  padding: 10rem 0 0;
+  max-width: 35ch;
+  border-radius: 0.5rem;
+  overflow: hidden;
+
+  transition:  transform 500ms ease;
+}
+
+.card:hover,
+.card:focus-within{
+  transform: scale(1.05);
+}
+
+
+.card-content{
+  --padding:1.5rem;  /*區域變數宣告*/
+  padding:var(--padding);
+  background: linear-gradient(
+    hsl(0 0% 0%/0),
+    hsl(20 0% 0%/0.3)20%,
+    hsl(0 0% 0%/1)
+  );
+  
+}
+
+
+
+.card_title{
+  position: relative;
+  width: max-content;
+  
+}
+
+.card_title::after{
+  content: '';
+  position: absolute;
+  left: calc(var(--padding) * -1);
+  bottom: 0;
+  height: 4px;
+  width: calc(100% + var(--padding));
+  background-color: hsl(142,90%,61%);
+  
+  transform-origin: left;
+  transition: transform 500ms ease;
+
+}
+
+.card:hover .card_title::after,
+.card:focus-within .card_title::after{
+  transform: scaleX(1);
+}
+
+@media(hover){   /*判斷使用者裝置使否有 hover 這個功能(懸停在元素上面)有的話啟用下面的css*/
+
+  .card-content{
+    transform: translateY(60%);               /*向下位移60%*/
+    transition: transform 500ms ease;         /*漸變函式*/
+  }
+  .card:hover .card-content,
+  .card:focus-within .card-content{       /*focus-within是指不管甚麼東西進入到該元素就啟用*/
+    transform: translateY(0);
+    transition-delay: 500ms;
+  }
+
+  .card:focus-within .card-content{     /*修復within的時候會重複跳動*/
+    transition-duration:  0ms;
+  }
+
+  .card-content > *:not(.card_title){     /* ( > *)代表該元素裡面全部的項目 :not()除了某個元素 */
+    opacity: 0;
+    transition:  opacity 500ms linear;
+  }
+
+  .card:hover .card-content > *:not(.card_title),
+  .card:focus-within .card-content > *:not(.card_title){
+    opacity: 1;
+    transition-delay:  800ms;
+  }
+
+  .card_title::after{
+    transform: scaleX(0);
+  }
+}
+
+.button{
+  cursor: pointer;
+  display: inline;
+  text-decoration: none;
+  color: var(--clr-neutral-900);
+  background-color: var(--clr-accent-400);
+  padding: 0.5em 1.25em;
+  border-radius: 0.25em;
+}
+
+.button:hover,
+.button:focus{
+  background-color: var(--clr-neutral-100);
+}
