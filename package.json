@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "express": "^4.18.2",
+    "ip": "^1.1.8",
+    "npm": "^9.6.1",
+    "serve": "^14.2.0",
+    "vue": "^3.2.47"
+  },
+  "devDependencies": {
+    "packagename": "^2.0.1"
+  }
+}
